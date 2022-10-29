@@ -1,0 +1,15 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About"
+      href: about.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<wjx_jessie@outlook.com>
+    - icon: fa-github fa-lg
+      href: http://github.com/jw4007/
+    - icon: fa-brands fa-linkedin
+      href: http://www.linkedin.com/in/jiaxin-jessie-wu/
+output:
+  html_document

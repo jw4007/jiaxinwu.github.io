@@ -1,0 +1,23 @@
+---
+title: "Jiaxin's Personal Page"
+---
+
+- __Name:__ Jiaxin
+- __Ocupation:__ "Student"
+- __Status:__ Don't want to do anything
+
+### Here are the things that keep me alive:
+
+![](./pictures/American Medium.jpeg)
+
+![](./pictures/Canton Medium.jpeg)
+
+![](./pictures/French Medium.jpeg)
+
+![](./pictures/German Medium.jpeg)
+
+![](./pictures/Indian Medium.jpeg)
+
+![](./pictures/Japanese Medium.jpeg)
+
+![](./pictures/Peruvian Medium.jpeg)

@@ -1,0 +1,12 @@
+---
+title: "About"
+---
+
+
+### Here is a brief introduction of my academic and professional experience
+
+# My CV
+![](./pictures/Resume Jiaxin Wu .jpg)
+
+# My recent project
+![](./pictures/APEX_Poster.jpg)
