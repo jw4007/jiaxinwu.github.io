@@ -1,0 +1,74 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    scource: embed
+---
+
+```{r, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(p8105.datasets)
+
+library(plotly)
+```
+
+```{r}
+data("instacart")
+instacart = 
+  instacart %>% 
+  as_tibble(instacart) %>% 
+  select(reordered, order_hour_of_day, product_name, aisle, department) 
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Chart A:
+A scatter plot that shows the items got reordered the most in the "produce", "dairy eggs", and "snacks" department.
+```{r}
+instacart %>%
+  filter(department == c("produce", "dairy eggs", "snacks")) %>%
+  mutate(product_name = as.factor(product_name)) %>%
+  group_by(aisle, product_name) %>%
+  summarize(reorder_times = sum(reordered)) %>%
+  mutate(aisle = fct_reorder(aisle, reorder_times)) %>%
+  plot_ly(
+    x = ~aisle, y = ~reorder_times, color = ~aisle,
+    type = "scatter", colors = "viridis", text = ~product_name
+  ) 
+```
+Column {data-width=600}
+-----------------------------------------------------------------------
+
+### Chart B
+A plot that shows the number of items ordered in each aisle. Here, aisles are ordered by ascending number of items.
+```{r}
+instacart %>% 
+  count(aisle) %>% 
+  filter(n > 10000) %>% 
+  mutate(aisle = fct_reorder(aisle, n)) %>% 
+  plot_ly(x = ~n, y = ~aisle, color = ~aisle, colors = "viridis", type = "bar")
+```
+
+### Chart C
+A bar chart that shows the number of items ordered in each department during the day.
+```{r}
+instacart %>%
+  mutate(order_hour_of_day = as.factor(order_hour_of_day),
+         department = as.factor(department)) %>%
+  group_by(order_hour_of_day) %>%
+  count(department) %>%
+  mutate(department = fct_reorder(department, n)) %>%
+  plot_ly(
+    x = ~order_hour_of_day, y = ~n, type = "bar", mode = "markers", color = ~department, colors = "viridis", text = ~department
+  )  %>%
+  layout(yaxis = list(title = 'Count'), barmode = 'stack')
+```
+
+```{r}
+rmarkdown::render("Dashboard.Rmd", output_format = "flexdashboard::flex_dashboard")
+```
+
